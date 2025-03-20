@@ -1,0 +1,32 @@
+{
+  "name": "address-mapper-backend",
+  "version": "1.0.0",
+  "description": "This is the backend service for address mapper",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/",
+    "start": "node server.js",
+    "lint": "eslint src/**/*.js"
+  },
+  "author": "Arjun-Tp",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "prettier": "^3.5.3"
+  },
+  "dependencies": {
+    "axios": "^1.8.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "joi": "^17.13.3",
+    "mongoose": "^8.12.1",
+    "sinon": "^19.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

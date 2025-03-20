@@ -1,0 +1,29 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+tmp/
+dist/
+build/
+
+# Database
+*.sqlite
+*.db
+mongo-data/
+
+# ESLint & Prettier cache
+.eslintcache
+.prettiercache
+
+# VS Code settings
+.vscode/
