@@ -28,7 +28,6 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"@geoapify/geocoder-autocomplete": "^2.1.0",
 		"axios": "^1.8.2",
 		"bootstrap": "^5.3.3",
 		"bootstrap-icons": "^1.11.3"

@@ -1,7 +1,7 @@
 {
-  "name": "address-mapper-backend",
+  "name": "queuing-system-poc-backend",
   "version": "1.0.0",
-  "description": "This is the backend service for address mapper",
+  "description": "This is the backend service for queuing-system-poc",
   "main": "server.js",
   "type": "module",
   "scripts": {
