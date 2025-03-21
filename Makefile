@@ -7,7 +7,7 @@ lint-backend:
 # Run backend
 start-backend:
 	@echo "Starting backend services..."
-	cd backend && nodemon server.js
+	cd backend && node server.js
 
 # Run frontend
 start-web:

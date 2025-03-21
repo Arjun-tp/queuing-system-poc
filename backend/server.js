@@ -6,7 +6,6 @@ import connectDB from './config/db.js'
 import routes from './routes/index.js'
 import helmet from 'helmet'
 import { setupSwagger } from './config/swaggerConfig.js'
-import { setupRealtime } from './utils/socket.js'
 
 dotenv.config()
 
@@ -36,11 +35,8 @@ const startServer = async () => {
     app.use(rateLimit({ windowMs: 30 * 1000, max: 10 }))
 
     app.use('/', routes)
-
-    const server = await setupRealtime(app)
-
     // Start the server after DB connection
-    server.listen(PORT, () =>
+    app.listen(PORT, () =>
       console.log(`Server started running on port ${PORT}`)
     )
   } catch (error) {
