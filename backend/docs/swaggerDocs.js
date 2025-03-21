@@ -8,8 +8,9 @@ const swaggerDefinition = {
   servers: [
     {
       url: 'http://localhost:7004',
-      description: 'Development Server, use this only while doing local development',
-    }
+      description:
+        'Development Server, use this only while doing local development',
+    },
   ],
   paths: {
     '/health': {
@@ -57,7 +58,11 @@ const swaggerDefinition = {
           source: { type: 'object' },
           destination: { type: 'object' },
           distanceInKMs: { type: 'number', format: 'float', example: 3940.5 },
-          createdAt: { type: 'string', format: 'date-time', example: '2023-06-15T12:30:00.000Z',},
+          createdAt: {
+            type: 'string',
+            format: 'date-time',
+            example: '2023-06-15T12:30:00.000Z',
+          },
         },
       },
     },
