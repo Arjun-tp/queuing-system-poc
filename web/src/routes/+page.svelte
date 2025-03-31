@@ -1,81 +1,24 @@
 <script>
-  import axios from 'axios';
-  import {API_URL} from '../config/constant.js'
-  import Toast from "../lib/toast.svelte";
-  import { showToast } from "../lib/stores/toastStore.js";
-  
-  let source = '';
-  let destination = '';
-  let unit = 'both';
-  let distance = null;
-  let kmDistance = null;
-  let milesDistance = null;
-  let errorMessage = '';
-
-
-  async function calculate() {
-    errorMessage = '';
-    distance = null;
-
-    if (!source || !destination) {
-      errorMessage = 'Please enter both source and destination.';
-      showToast(errorMessage);
-      return;
-    }
-
-    try {
-      const response = await axios.post(`${API_URL}/location/distance`, {
-        source,
-        destination
-      });
-
-      kmDistance = (parseFloat(response.data.distanceInKMs)).toFixed(2);
-      milesDistance = (kmDistance * 0.621371).toFixed(2);
-
-    } catch (err) {
-      if (err?.response?.status === 429) {
-        errorMessage = err.response.data
-      } else if(err?.response?.data?.error?.message){
-        errorMessage = err.response.data.error.message
-      } else {
-        errorMessage = `Failed to fetch distance. Please try again.`;
-      }
-      showToast(errorMessage)
-    }
-  }
-
+  import { queueItems } from '$lib/socket.js';
 </script>
 
-<Toast />
+<div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+  <div class="w-full max-w-sm bg-white rounded-lg shadow p-5">
+    <h2 class="text-lg font-semibold text-center mb-5 text-gray-800 text-success">LIVE QUEUE</h2>
 
-<main class="container mt-5">
-  <div class="card shadow-sm">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <h2 class="h5 m-0">Distance Calculator</h2>
-      <a href="/history" class="btn btn-outline-dark">View Historical Queries</a>
-    </div>
-
-    <div class="card-body">
-      <p class="text-muted">Enter the details</p>
-      <!-- Input Fields -->
-      <div class="row mt-3">
-        <div class="col-md-6">
-          <label class="form-label">Source</label>
-          <input type="text" class="form-control" bind:value={source} placeholder="Enter Source Address" />
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Destination</label>
-          <input type="text" class="form-control" bind:value={destination} placeholder="Enter Destination Address" />
-        </div>
+    {#if $queueItems.length > 0}
+      <div class="space-y-2">
+        {#each $queueItems as item (item.timestamp)}
+          <div class="text-center bg-gray-100 px-3 py-2 rounded-md shadow-sm text-sm">
+            <div class="text-danger"><b>{item.message}</b></div>
+            <div class="text-xs text-gray-100 mt-1">
+              {new Date(item.timestamp).toLocaleTimeString()}
+            </div>
+          </div>
+        {/each}
       </div>
-
-      <!-- Calculate Button -->
-      <div class="mt-4 text-center">
-        <button class="btn btn-danger px-4 py-2" on:click={calculate()} disabled={!destination || !source}>
-          Calculate Distance <i class="bi bi-arrow-right ms-2"></i>
-        </button>
-      </div>
-
-    </div>
+    {:else}
+      <p class="text-center text-gray-400 text-sm">No messages in the queue yet.</p>
+    {/if}
   </div>
-</main>
+</div>
