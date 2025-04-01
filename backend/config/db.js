@@ -4,7 +4,7 @@ import { mongo_config } from './vars.js'
 const connectDB = async () => {
   try {
     console.log('Connecting to MongoDB...')
-    const mongoURI = `mongodb+srv://${mongo_config.MONGO_USERNAME}:${mongo_config.MONGO_PASSWORD}@${mongo_config.MONGO_HOST}/address_mapper`
+    const mongoURI = `mongodb+srv://${mongo_config.MONGO_USERNAME}:${mongo_config.MONGO_PASSWORD}@${mongo_config.MONGO_HOST}/queue_appointment`
     await mongoose.connect(mongoURI)
     console.log('*** MongoDB Connected ***')
   } catch (error) {

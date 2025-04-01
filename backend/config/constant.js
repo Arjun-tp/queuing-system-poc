@@ -1,5 +1,7 @@
-export const responseMessage = {}
-
-export const apiUrls = {}
-
 export const MAX_NUMBER_OF_RETRIES = 3
+
+export const QUEUE_STATUS = {
+  IN_QUEUE: 'IN_QUEUE',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED',
+}
