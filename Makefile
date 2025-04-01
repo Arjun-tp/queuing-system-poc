@@ -7,7 +7,8 @@ lint-backend:
 # Run backend
 start-backend:
 	@echo "Starting backend services..."
-	cd backend && nodemon server.js
+	@docker-compose up -d kafka zookeeper
+	@cd backend && npx nodemon server.js
 
 # Run frontend
 start-web:
